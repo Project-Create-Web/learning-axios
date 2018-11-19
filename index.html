@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		Yes Or No
+	</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+	<div class="container mt-5" id="cont">
+	</div>
+	
+
+<script>
+	axios.get('https://jsonplaceholder.typicode.com/posts').then(function (res) {
+		console.log(res.data);
+		for (var i = res.data.length - 1; i >= 0; i--) {
+			displayResult(res.data[i]);
+		}
+		
+		
+	});
+
+	function displayResult(data){
+		let cont = document.querySelector('#cont');
+		let cardContainer = document.createElement("div");
+		cardContainer.classList = "card mb-3";
+
+		let cardHeader = document.createElement("div");
+		cardHeader.classList = "card-header";
+		cardHeader.innerHTML = data.title;
+
+		let cardBody = document.createElement("div");
+		cardBody.classList = "card-body";
+		cardBody.innerHTML = data.body
+
+		cardContainer.appendChild(cardHeader);
+		cardContainer.appendChild(cardBody);
+
+		cont.appendChild(cardContainer);
+
+
+	}
+	
+</script>
+
+</body>
+</html>
